@@ -24,10 +24,10 @@ import java.math.BigDecimal;
 public class CalculadoraDeDescontos {
 
     public BigDecimal calcular(Orcamento orcamento) {
-        Desconto desconto = new DescontoParaQtdItens(
+        Desconto cadeiaDeDescontos = new DescontoParaQtdItens(
                             new DescontoParaValor(
                             new SemDesconto()));
 
-        return desconto.calcular(orcamento);
+        return cadeiaDeDescontos.calcular(orcamento);
     }
 }
