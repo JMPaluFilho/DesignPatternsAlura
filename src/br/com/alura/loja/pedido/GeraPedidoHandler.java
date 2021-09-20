@@ -1,32 +1,35 @@
 package br.com.alura.loja.pedido;
 
 import br.com.alura.loja.orcamento.Orcamento;
+import br.com.alura.loja.pedido.acao.AcaoAposGerarPedido;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
- * Aplicado o padrão Command Handler.
+ * Aplicado o padrão Observer.
  *
- * O Command é um padrão de projeto comportamental que converte solicitações ou operações simples em objetos.
+ * O Observer é um padrão de projeto comportamental que permite que um objeto notifique outros objetos sobre
+ * alterações em seu estado.
  *
- * O padrão Command é um padrão de comportamento em que um objeto é utilizado para encapsular toda informação
- * necessária para executar uma ação ou disparar um evento em um momento futuro. Levando-se em conta que hoje
- * é possível receber essa informação de várias formas (RestAPI, XML, Web, etc.), o command handler ajusta o
- * padrão Command, fazendo a separação de informações e ações, o que vai um pouco contra a ideia de orientação
- * a objeto, porém evitando a duplicação de código desnecessário nos casos da fonte da informação serem de locais
- * diferentes.
+ * Quando um evento for disparado terá um ou mais ouvintes que se inscreveram e estão observando esse evento e eles
+ * vão ser notificados, então vão executar a sua própria ação. Essa é a ideia. Há uma inversão do controle. Em vez de
+ * chamarmos classe por classe, nós disparamos o evento e cada uma das classes vão ser notificadas e elas é que vão
+ * reagir a esse evento. Essa é a ideia para você diminuir o acoplamento.
  */
 
 public class GeraPedidoHandler {
 
-    //construtor com injeção de dependências: repository, service, etc.
+    private final List<AcaoAposGerarPedido> acoes;
+
+    public GeraPedidoHandler(List<AcaoAposGerarPedido> acoes) {
+        this.acoes = acoes;
+    }
 
     public void executa(GeraPedido dados) {
         Orcamento orcamento = new Orcamento(dados.getValorOrcamento(), dados.getQuantidadeItens());
         Pedido pedido = new Pedido(dados.getCliente(), LocalDateTime.now(), orcamento);
 
-        System.out.println("Lógica para salvar pedido no banco de dados...");
-        System.out.println("Lógica para enviar e-mail com dados do novo pedido...");
-        System.out.println(pedido);
+        acoes.forEach(a -> a.executarAcao(pedido));
     }
 }
