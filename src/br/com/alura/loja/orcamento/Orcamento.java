@@ -1,7 +1,6 @@
 package br.com.alura.loja.orcamento;
 
-import br.com.alura.loja.orcamento.situacao.EmAnalise;
-import br.com.alura.loja.orcamento.situacao.SituacaoOrcamento;
+import br.com.alura.loja.orcamento.situacao.*;
 
 import java.math.BigDecimal;
 
@@ -42,11 +41,20 @@ public class Orcamento {
         return quantidadeItens;
     }
 
-    public SituacaoOrcamento getSituacao() {
-        return situacao;
-    }
-
     public void setSituacao(SituacaoOrcamento situacao) {
         this.situacao = situacao;
     }
+
+    @Override
+    public String toString() {
+        return "Orcamento {" +
+                "valor = " + valor +
+                ", quantidadeItens = " + quantidadeItens +
+                ", situacao = " +
+                (situacao instanceof EmAnalise ? "Em Análise" :
+                        situacao instanceof Aprovado ? "Aprovado" :
+                                situacao instanceof Reprovado ? "Reprovado" : "Finalizado") +
+                "}";
+    }
+
 }
