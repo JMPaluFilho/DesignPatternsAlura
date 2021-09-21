@@ -1,29 +1,23 @@
 package br.com.alura.loja.pedido;
 
-import java.math.BigDecimal;
+import br.com.alura.loja.orcamento.Orcamento;
 
 public class GeraPedido {
 
     private final String cliente;
-    private final BigDecimal valorOrcamento;
-    private final int quantidadeItens;
+    private final Orcamento orcamento;
 
-    public GeraPedido(String cliente, BigDecimal valorOrcamento, int quantidadeItens) {
+    public GeraPedido(String cliente, Orcamento orcamento) {
         this.cliente = cliente;
-        this.valorOrcamento = valorOrcamento;
-        this.quantidadeItens = quantidadeItens;
+        this.orcamento = orcamento;
     }
 
     public String getCliente() {
         return cliente;
     }
 
-    public BigDecimal getValorOrcamento() {
-        return valorOrcamento;
-    }
-
-    public int getQuantidadeItens() {
-        return quantidadeItens;
+    public Orcamento getOrcamento() {
+        return orcamento;
     }
 
 }
