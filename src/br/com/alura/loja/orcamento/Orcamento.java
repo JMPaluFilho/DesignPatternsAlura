@@ -45,6 +45,10 @@ public class Orcamento {
         this.situacao = situacao;
     }
 
+    public boolean isFinalizado() {
+        return situacao instanceof Finalizado;
+    }
+
     @Override
     public String toString() {
         return "Orcamento {" +
