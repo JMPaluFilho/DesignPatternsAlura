@@ -6,6 +6,22 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Aplicado o padrão Composite.
+ *
+ * O Composite é um padrão de projeto estrutural que permite que você componha objetos em estruturas de árvores e
+ * então trabalhe com essas estruturas como se elas fossem objetos individuais.
+ *
+ * O maior benefício dessa abordagem é que você não precisa se preocupar sobre as classes concretas dos objetos
+ * que compõem essa árvore. Você pode tratar todos eles com a mesma interface. Quando você chama um método os próprios
+ * objetos passam o pedido pela árvore.
+ *
+ * Tal padrão é, normalmente, utilizado para representar listas recorrentes ou recursivas de elementos. Além disso,
+ * este modo de representação hierárquica de classes permite que os elementos contidos em um objeto composto sejam
+ * tratados como se fossem um objeto único. Desta forma, os métodos comuns às classes podem ser aplicados, também,
+ * ao conjunto agrupado no objeto composto.
+ */
+
 public class Orcamento implements Orcavel {
 
     private BigDecimal valor;
